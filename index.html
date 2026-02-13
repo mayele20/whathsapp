@@ -15,6 +15,9 @@
     --noir-doux: #1A1A1A;
     --purple-accent: #9C27B0;
     --pink-accent: #FF69B4;
+    --cyan: #00FFFF;
+    --lime: #00FF00;
+    --magenta: #FF00FF;
 }
 
 * {
@@ -25,9 +28,9 @@
 
 body {
     font-family: 'Cormorant Garamond', serif;
-    background: linear-gradient(135deg, #FFE5EC 0%, #FCE4EC 25%, #F3E5F5 50%, #FCE4EC 75%, #FFE5EC 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    background: linear-gradient(-45deg, #FF1744, #FF00FF, #00FFFF, #00FF00, #FFD700, #FF1744);
+    background-size: 600% 600%;
+    animation: crazygradient 3s ease infinite;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -37,9 +40,11 @@ body {
     overflow: hidden;
 }
 
-@keyframes gradientShift {
+@keyframes crazygradient {
     0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
     50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
     100% { background-position: 0% 50%; }
 }
 
@@ -77,8 +82,15 @@ body::before {
     background: var(--or-doux);
     border-radius: 50%;
     opacity: 0;
-    animation: particleFloat 8s ease-in-out infinite;
-    box-shadow: 0 0 10px var(--or-doux);
+    animation: particleFloat 8s ease-in-out infinite, particleColor 4s ease-in-out infinite;
+    box-shadow: 0 0 15px var(--or-doux);
+}
+
+@keyframes particleColor {
+    0% { background: #FFD700; box-shadow: 0 0 15px #FFD700; }
+    33% { background: #FF1744; box-shadow: 0 0 15px #FF1744; }
+    66% { background: #00FFFF; box-shadow: 0 0 15px #00FFFF; }
+    100% { background: #FFD700; box-shadow: 0 0 15px #FFD700; }
 }
 
 @keyframes particleFloat {
@@ -99,14 +111,27 @@ body::before {
     max-width: 700px;
     width: 100%;
     text-align: center;
-    animation: fadeIn 2s ease-out;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(15px);
+    animation: fadeIn 2s ease-out, bounceContainer 2s ease-in-out 2s infinite, rotateCrazy 8s linear infinite;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
     padding: 80px 50px;
-    border-radius: 30px;
-    box-shadow: 0 20px 60px rgba(255, 23, 68, 0.15),
-                0 0 40px rgba(255, 107, 157, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 40px;
+    box-shadow: 0 0 50px rgba(255, 23, 68, 0.5),
+                0 0 100px rgba(255, 0, 255, 0.3),
+                0 0 150px rgba(0, 255, 255, 0.2),
+                inset 0 0 30px rgba(255, 255, 255, 0.3);
+    border: 3px solid;
+    border-image: linear-gradient(45deg, #FF1744, #FF00FF, #00FFFF, #00FF00) 1;
+}
+
+@keyframes bounceContainer {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.05) translateY(-15px); }
+}
+
+@keyframes rotateCrazy {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
 }
 
 @keyframes fadeIn {
@@ -165,16 +190,23 @@ body::before {
 .title {
     font-family: 'Italiana', serif;
     font-size: clamp(48px, 8vw, 72px);
-    background: linear-gradient(135deg, var(--rose-elegant), var(--rose-light), var(--purple-accent));
+    background: linear-gradient(90deg, #FF1744, #FF00FF, #00FFFF, #00FF00, #FFD700, #FF1744);
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: titleAppear 1.8s ease-out 0.8s forwards, textGlow 2s ease-in-out 0.8s infinite;
     margin-bottom: 30px;
     letter-spacing: 3px;
     font-weight: 400;
     opacity: 0;
-    animation: titleAppear 1.8s ease-out 0.8s forwards;
-    text-shadow: 0 4px 20px rgba(255, 23, 68, 0.2);
+    text-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+    filter: drop-shadow(0 0 20px #FF1744) drop-shadow(0 0 10px #FF00FF);
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 20px #FF1744, 0 0 30px #FF00FF; }
+    50% { text-shadow: 0 0 30px #00FFFF, 0 0 40px #FF1744; }
 }
 
 @keyframes titleAppear {
@@ -190,12 +222,24 @@ body::before {
 
 /* Coeur élégant */
 .heart-elegant {
-    font-size: 80px;
+    font-size: 120px;
     margin: 40px 0;
     opacity: 0;
-    animation: heartAppear 2s ease-out 1.2s forwards, heartPulse 1.5s ease-in-out 3s infinite;
-    filter: drop-shadow(0 0 15px rgba(255, 23, 68, 0.6)) drop-shadow(0 4px 12px rgba(255, 107, 157, 0.3));
-    text-shadow: 0 0 20px rgba(255, 23, 68, 0.5);
+    animation: heartAppear 2s ease-out 1.2s forwards, heartCrazy 0.5s ease-in-out 3s infinite, spinHeart 3s linear 3s infinite;
+    filter: drop-shadow(0 0 30px #FF1744) drop-shadow(0 0 20px #FF00FF) drop-shadow(0 0 10px #00FFFF);
+    text-shadow: 0 0 40px #FF1744, 0 0 30px #FF00FF, 0 0 20px #00FFFF;
+}
+
+@keyframes heartCrazy {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.3) rotate(15deg); }
+    50% { transform: scale(1.1) rotate(-10deg); }
+    75% { transform: scale(1.25) rotate(20deg); }
+}
+
+@keyframes spinHeart {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 @keyframes heartAppear {
@@ -231,8 +275,13 @@ body::before {
     max-width: 600px;
     margin: 0 auto 30px;
     opacity: 0;
-    animation: messageAppear 1.8s ease-out 1.5s forwards;
-    text-shadow: 0 2px 4px rgba(255, 23, 68, 0.1);
+    animation: messageAppear 1.8s ease-out 1.5s forwards, messageTwist 1s ease-in-out 1.5s infinite;
+    text-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+}
+
+@keyframes messageTwist {
+    0%, 100% { transform: skewX(0deg); }
+    50% { transform: skewX(2deg); }
 }
 
 @keyframes messageAppear {
@@ -255,10 +304,17 @@ body::before {
     position: relative;
     padding: 30px 40px;
     opacity: 0;
-    animation: quoteAppear 1.8s ease-out 1.8s forwards;
-    background: linear-gradient(135deg, rgba(255, 23, 68, 0.05), rgba(156, 39, 176, 0.05));
-    border-left: 4px solid var(--rose-elegant);
+    animation: quoteAppear 1.8s ease-out 1.8s forwards, pulseQuote 1.5s ease-in-out 1.8s infinite;
+    background: linear-gradient(135deg, rgba(255, 0, 255, 0.15), rgba(0, 255, 255, 0.15));
+    border-left: 4px solid;
+    border-image: linear-gradient(180deg, #FF1744, #FF00FF) 1;
     border-radius: 8px;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes pulseQuote {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 255, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1); }
+    50% { box-shadow: 0 0 40px rgba(255, 1, 255, 0.5), inset 0 0 30px rgba(0, 255, 255, 0.15); }
 }
 
 .quote::before,
@@ -352,9 +408,17 @@ body::before {
     position: absolute;
     font-size: 20px;
     opacity: 0;
-    animation: decoHeartFloat 15s ease-in-out infinite;
+    animation: decoHeartFloat 15s ease-in-out infinite, decoHeartColor 3s ease-in-out infinite;
     color: var(--rose-elegant);
-    text-shadow: 0 0 10px rgba(255, 23, 68, 0.5);
+    text-shadow: 0 0 20px rgba(255, 23, 68, 0.8);
+    filter: drop-shadow(0 0 10px #FF00FF);
+}
+
+@keyframes decoHeartColor {
+    0% { color: #FF1744; text-shadow: 0 0 20px #FF1744; }
+    33% { color: #FF00FF; text-shadow: 0 0 20px #FF00FF; }
+    66% { color: #00FFFF; text-shadow: 0 0 20px #00FFFF; }
+    100% { color: #FF1744; text-shadow: 0 0 20px #FF1744; }
 }
 
 @keyframes decoHeartFloat {
@@ -388,8 +452,14 @@ body::before {
     background: var(--rose-elegant);
     opacity: 0.15;
     border-radius: 50% 0 50% 0;
-    animation: petalDrift 20s linear infinite;
-    box-shadow: 0 0 8px rgba(255, 23, 68, 0.4);
+    animation: petalDrift 20s linear infinite, petalColor 2s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(255, 23, 68, 0.6);
+}
+
+@keyframes petalColor {
+    0% { background: #FF1744; box-shadow: 0 0 15px #FF1744; }
+    50% { background: #FF00FF; box-shadow: 0 0 15px #FF00FF; }
+    100% { background: #FF1744; box-shadow: 0 0 15px #FF1744; }
 }
 
 @keyframes petalDrift {
@@ -446,15 +516,21 @@ body::before {
 /* Animation entrée douce */
 @keyframes softGlow {
     0%, 100% {
-        box-shadow: 0 20px 60px rgba(255, 23, 68, 0.15), 0 0 40px rgba(255, 107, 157, 0.1);
+        box-shadow: 0 0 50px rgba(255, 23, 68, 0.5),
+                    0 0 100px rgba(255, 0, 255, 0.3),
+                    0 0 150px rgba(0, 255, 255, 0.2),
+                    inset 0 0 30px rgba(255, 255, 255, 0.3);
     }
     50% {
-        box-shadow: 0 20px 80px rgba(255, 23, 68, 0.2), 0 0 50px rgba(156, 39, 176, 0.15);
+        box-shadow: 0 0 80px rgba(255, 0, 255, 0.6),
+                    0 0 120px rgba(0, 255, 255, 0.4),
+                    0 0 200px rgba(255, 0, 255, 0.3),
+                    inset 0 0 50px rgba(255, 255, 255, 0.4);
     }
 }
 
 .container {
-    animation: fadeIn 2s ease-out, softGlow 4s ease-in-out 2s infinite;
+    animation: fadeIn 2s ease-out, softGlow 3s ease-in-out 2s infinite, bounceContainer 2s ease-in-out 2s infinite, rotateCrazy 8s linear infinite;
 }
 </link>
 </head>

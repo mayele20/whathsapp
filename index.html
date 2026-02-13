@@ -28,8 +28,7 @@ body {
     justify-content: center;
     padding: 40px 20px;
     position: relative;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 /* Fond subtil avec texture */
@@ -45,36 +44,6 @@ body::before {
         radial-gradient(circle at 80% 20%, rgba(201, 168, 106, 0.03) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
-}
-
-/* Vidéo en arrière-plan */
-.video-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-}
-
-.video-background iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    pointer-events: none;
-}
-
-/* Overlay sur la vidéo */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(251, 248, 243, 0.4) 0%, rgba(245, 239, 231, 0.5) 100%);
-    z-index: 0;
-    pointer-events: none;
 }
 
 /* Particules dorées subtiles */
@@ -116,8 +85,7 @@ body::after {
     max-width: 700px;
     width: 100%;
     text-align: center;
-    animation: fadeIn 2s ease-out;
-    padding-bottom: 100px;
+    animation: none;
 }
 
 @keyframes fadeIn {
@@ -138,8 +106,7 @@ body::after {
     background: linear-gradient(90deg, transparent, var(--or-doux), transparent);
     margin: 0 auto 40px;
     position: relative;
-    opacity: 0;
-    animation: ornamentAppear 1.5s ease-out 0.5s forwards;
+    opacity: 1;
 }
 
 .ornament-top::before,
@@ -179,8 +146,7 @@ body::after {
     margin-bottom: 30px;
     letter-spacing: 2px;
     font-weight: 400;
-    opacity: 0;
-    animation: titleAppear 1.8s ease-out 0.8s forwards;
+    opacity: 1;
 }
 
 @keyframes titleAppear {
@@ -198,8 +164,9 @@ body::after {
 .heart-elegant {
     font-size: 50px;
     margin: 40px 0;
-    opacity: 0;
-    animation: heartAppear 2s ease-out 1.2s forwards, heartPulse 4s ease-in-out 3s infinite;
+    opacity: 1;
+    /* keep subtle pulse, but ensure visible */
+    animation: heartPulse 4s ease-in-out 0s infinite;
     filter: drop-shadow(0 4px 8px rgba(212, 80, 106, 0.2));
 }
 
@@ -232,8 +199,7 @@ body::after {
     font-weight: 300;
     max-width: 600px;
     margin: 0 auto 30px;
-    opacity: 0;
-    animation: messageAppear 1.8s ease-out 1.5s forwards;
+    opacity: 1;
 }
 
 @keyframes messageAppear {
@@ -255,8 +221,7 @@ body::after {
     margin: 50px 0;
     position: relative;
     padding: 0 40px;
-    opacity: 0;
-    animation: quoteAppear 1.8s ease-out 1.8s forwards;
+    opacity: 1;
 }
 
 .quote::before,
@@ -297,8 +262,7 @@ body::after {
     color: var(--or-doux);
     margin-top: 60px;
     letter-spacing: 1px;
-    opacity: 0;
-    animation: signatureAppear 1.8s ease-out 2.2s forwards;
+    opacity: 1;
 }
 
 @keyframes signatureAppear {
@@ -319,8 +283,7 @@ body::after {
     background: linear-gradient(90deg, transparent, var(--or-doux), transparent);
     margin: 50px auto 0;
     position: relative;
-    opacity: 0;
-    animation: ornamentAppear 1.5s ease-out 2.5s forwards;
+    opacity: 1;
 }
 
 .ornament-bottom::before {
@@ -401,8 +364,7 @@ body::after {
     text-transform: uppercase;
     margin-bottom: 20px;
     font-weight: 300;
-    opacity: 0;
-    animation: dateAppear 1.5s ease-out 0.3s forwards;
+    opacity: 1;
 }
 
 @keyframes dateAppear {
@@ -420,7 +382,6 @@ body::after {
 @media (max-width: 768px) {
     .container {
         padding: 20px;
-        padding-bottom: 80px;
     }
     
     .quote {
@@ -435,11 +396,6 @@ body::after {
 </style>
 </head>
 <body>
-
-<!-- Vidéo YouTube de pluie en arrière-plan -->
-<div class="video-background">
-    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/7kN_DF_NJGQ?autoplay=1&mute=1&loop=1&playlist=7kN_DF_NJGQ&controls=0" allow="autoplay" allowfullscreen></iframe>
-</div>
 
 <!-- Particules dorées -->
 <div class="particles" id="particlesContainer"></div>

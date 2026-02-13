@@ -5,12 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Joyeuse Saint-Valentin ❤️</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Italiana&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style>
 :root {
-    --rose-elegante: #D4506A;
-    --or-doux: #C9A86A;
-    --creme: #FBF8F3;
+    --rose-elegant: #FF1744;
+    --rose-light: #FF6B9D;
+    --or-doux: #FFD700;
+    --creme: #FFF5F7;
     --noir-doux: #1A1A1A;
+    --purple-accent: #9C27B0;
+    --pink-accent: #FF69B4;
 }
 
 * {
@@ -21,7 +25,9 @@
 
 body {
     font-family: 'Cormorant Garamond', serif;
-    background: linear-gradient(180deg, #FBF8F3 0%, #F5EFE7 100%);
+    background: linear-gradient(135deg, #FFE5EC 0%, #FCE4EC 25%, #F3E5F5 50%, #FCE4EC 75%, #FFE5EC 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -29,6 +35,12 @@ body {
     padding: 40px 20px;
     position: relative;
     overflow: hidden;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* Fond subtil avec texture */
@@ -40,8 +52,9 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 20% 80%, rgba(212, 80, 106, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(201, 168, 106, 0.03) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(255, 23, 68, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(156, 39, 176, 0.05) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
 }
@@ -65,6 +78,7 @@ body::before {
     border-radius: 50%;
     opacity: 0;
     animation: particleFloat 8s ease-in-out infinite;
+    box-shadow: 0 0 10px var(--or-doux);
 }
 
 @keyframes particleFloat {
@@ -86,6 +100,13 @@ body::before {
     width: 100%;
     text-align: center;
     animation: fadeIn 2s ease-out;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 80px 50px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(255, 23, 68, 0.15),
+                0 0 40px rgba(255, 107, 157, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 @keyframes fadeIn {
@@ -116,8 +137,9 @@ body::before {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--or-doux);
-    font-size: 10px;
+    color: var(--rose-elegant);
+    font-size: 12px;
+    text-shadow: 0 0 8px rgba(255, 23, 68, 0.4);
 }
 
 .ornament-top::before {
@@ -143,12 +165,16 @@ body::before {
 .title {
     font-family: 'Italiana', serif;
     font-size: clamp(48px, 8vw, 72px);
-    color: var(--rose-elegante);
+    background: linear-gradient(135deg, var(--rose-elegant), var(--rose-light), var(--purple-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 30px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     font-weight: 400;
     opacity: 0;
     animation: titleAppear 1.8s ease-out 0.8s forwards;
+    text-shadow: 0 4px 20px rgba(255, 23, 68, 0.2);
 }
 
 @keyframes titleAppear {
@@ -164,11 +190,12 @@ body::before {
 
 /* Coeur élégant */
 .heart-elegant {
-    font-size: 50px;
+    font-size: 80px;
     margin: 40px 0;
     opacity: 0;
-    animation: heartAppear 2s ease-out 1.2s forwards, heartPulse 4s ease-in-out 3s infinite;
-    filter: drop-shadow(0 4px 8px rgba(212, 80, 106, 0.2));
+    animation: heartAppear 2s ease-out 1.2s forwards, heartPulse 1.5s ease-in-out 3s infinite;
+    filter: drop-shadow(0 0 15px rgba(255, 23, 68, 0.6)) drop-shadow(0 4px 12px rgba(255, 107, 157, 0.3));
+    text-shadow: 0 0 20px rgba(255, 23, 68, 0.5);
 }
 
 @keyframes heartAppear {
@@ -186,8 +213,11 @@ body::before {
     0%, 100% {
         transform: scale(1);
     }
+    25% {
+        transform: scale(1.15);
+    }
     50% {
-        transform: scale(1.1);
+        transform: scale(1);
     }
 }
 
@@ -202,6 +232,7 @@ body::before {
     margin: 0 auto 30px;
     opacity: 0;
     animation: messageAppear 1.8s ease-out 1.5s forwards;
+    text-shadow: 0 2px 4px rgba(255, 23, 68, 0.1);
 }
 
 @keyframes messageAppear {
@@ -217,14 +248,17 @@ body::before {
 
 /* Citation romantique */
 .quote {
-    font-size: clamp(18px, 2.5vw, 22px);
+    font-size: clamp(18px, 2.5vw, 24px);
     font-style: italic;
-    color: var(--rose-elegante);
+    color: var(--rose-elegant);
     margin: 50px 0;
     position: relative;
-    padding: 0 40px;
+    padding: 30px 40px;
     opacity: 0;
     animation: quoteAppear 1.8s ease-out 1.8s forwards;
+    background: linear-gradient(135deg, rgba(255, 23, 68, 0.05), rgba(156, 39, 176, 0.05));
+    border-left: 4px solid var(--rose-elegant);
+    border-radius: 8px;
 }
 
 .quote::before,
@@ -232,9 +266,9 @@ body::before {
     content: '"';
     font-size: 60px;
     position: absolute;
-    opacity: 0.2;
+    opacity: 0.15;
     font-family: 'Italiana', serif;
-    color: var(--or-doux);
+    color: var(--rose-elegant);
 }
 
 .quote::before {
@@ -262,11 +296,12 @@ body::before {
 .signature {
     font-family: 'Italiana', serif;
     font-size: clamp(22px, 3.5vw, 28px);
-    color: var(--or-doux);
+    color: var(--rose-elegant);
     margin-top: 60px;
     letter-spacing: 1px;
     opacity: 0;
     animation: signatureAppear 1.8s ease-out 2.2s forwards;
+    text-shadow: 0 2px 8px rgba(255, 23, 68, 0.2);
 }
 
 @keyframes signatureAppear {
@@ -283,8 +318,8 @@ body::before {
 /* Ornement inférieur */
 .ornament-bottom {
     width: 120px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--or-doux), transparent);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--rose-elegant), transparent);
     margin: 50px auto 0;
     position: relative;
     opacity: 0;
@@ -297,8 +332,9 @@ body::before {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: var(--rose-elegante);
-    font-size: 12px;
+    color: var(--rose-elegant);
+    font-size: 14px;
+    text-shadow: 0 0 8px rgba(255, 23, 68, 0.4);
 }
 
 /* Coeurs décoratifs subtils */
@@ -317,7 +353,8 @@ body::before {
     font-size: 20px;
     opacity: 0;
     animation: decoHeartFloat 15s ease-in-out infinite;
-    color: var(--rose-elegante);
+    color: var(--rose-elegant);
+    text-shadow: 0 0 10px rgba(255, 23, 68, 0.5);
 }
 
 @keyframes decoHeartFloat {
@@ -348,10 +385,11 @@ body::before {
     position: absolute;
     width: 12px;
     height: 12px;
-    background: var(--rose-elegante);
+    background: var(--rose-elegant);
     opacity: 0.15;
     border-radius: 50% 0 50% 0;
     animation: petalDrift 20s linear infinite;
+    box-shadow: 0 0 8px rgba(255, 23, 68, 0.4);
 }
 
 @keyframes petalDrift {
@@ -364,13 +402,14 @@ body::before {
 /* Date élégante */
 .date {
     font-size: clamp(14px, 2vw, 16px);
-    color: var(--or-doux);
+    color: var(--rose-elegant);
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 20px;
     font-weight: 300;
     opacity: 0;
     animation: dateAppear 1.5s ease-out 0.3s forwards;
+    text-shadow: 0 2px 6px rgba(255, 23, 68, 0.15);
 }
 
 @keyframes dateAppear {
@@ -387,19 +426,37 @@ body::before {
 /* Responsive */
 @media (max-width: 768px) {
     .container {
-        padding: 20px;
+        padding: 60px 30px;
     }
     
     .quote {
-        padding: 0 30px;
+        padding: 20px 25px;
     }
     
     .quote::before,
     .quote::after {
         font-size: 40px;
     }
+    
+    .heart-elegant {
+        font-size: 60px;
+    }
 }
-</style>
+
+/* Animation entrée douce */
+@keyframes softGlow {
+    0%, 100% {
+        box-shadow: 0 20px 60px rgba(255, 23, 68, 0.15), 0 0 40px rgba(255, 107, 157, 0.1);
+    }
+    50% {
+        box-shadow: 0 20px 80px rgba(255, 23, 68, 0.2), 0 0 50px rgba(156, 39, 176, 0.15);
+    }
+}
+
+.container {
+    animation: fadeIn 2s ease-out, softGlow 4s ease-in-out 2s infinite;
+}
+</link>
 </head>
 <body>
 

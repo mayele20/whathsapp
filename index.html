@@ -4,21 +4,343 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Joyeuse Saint-Valentin ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Italiana&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
-:root {
-    --rose-elegant: #FF1744;
-    --rose-light: #FF6B9D;
-    --or-doux: #FFD700;
-    --creme: #FFF5F7;
-    --noir-doux: #1A1A1A;
-    --purple-accent: #9C27B0;
-    --pink-accent: #FF69B4;
-    --cyan: #00FFFF;
-    --lime: #00FF00;
-    --magenta: #FF00FF;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #000000 0%, #1a0033 25%, #330033 50%, #1a0033 75%, #000000 100%);
+    background-size: 400% 400%;
+    animation: darkGradient 8s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes darkGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Étoiles de fond */
+body::before {
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 60px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 10px, #fff, rgba(0,0,0,0));
+    background-size: 200px 200px;
+    animation: twinkle 5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    max-width: 900px;
+}
+
+/* GROS CŒUR ROUGE */
+.big-heart {
+    font-size: 300px;
+    color: #FF0000;
+    text-shadow: 
+        0 0 30px rgba(255, 0, 0, 0.8),
+        0 0 60px rgba(255, 0, 0, 0.5),
+        0 0 90px rgba(255, 0, 0, 0.3),
+        0 0 120px rgba(255, 100, 0, 0.2);
+    animation: beatHeart 1s ease-in-out infinite, glowPulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 50, 0, 0.6));
+}
+
+@keyframes beatHeart {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1);
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        text-shadow: 
+            0 0 30px rgba(255, 0, 0, 0.8),
+            0 0 60px rgba(255, 0, 0, 0.5),
+            0 0 90px rgba(255, 0, 0, 0.3);
+    }
+    50% {
+        text-shadow: 
+            0 0 50px rgba(255, 0, 0, 1),
+            0 0 100px rgba(255, 50, 0, 0.7),
+            0 0 150px rgba(255, 100, 0, 0.5);
+    }
+}
+
+/* Texte avec effet typewriter */
+.typewriter-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    padding: 60px 50px;
+    border-radius: 30px;
+    border: 2px solid rgba(255, 0, 0, 0.3);
+    box-shadow: 
+        0 0 40px rgba(255, 0, 0, 0.3),
+        inset 0 0 40px rgba(255, 255, 255, 0.1);
+    max-width: 700px;
+    animation: containerGlow 3s ease-in-out infinite;
+}
+
+@keyframes containerGlow {
+    0%, 100% {
+        box-shadow: 
+            0 0 40px rgba(255, 0, 0, 0.3),
+            inset 0 0 40px rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 
+            0 0 80px rgba(255, 0, 0, 0.6),
+            inset 0 0 60px rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 0, 0, 0.6);
+    }
+}
+
+.typewriter {
+    font-size: 32px;
+    color: #FFFFFF;
+    font-weight: 500;
+    line-height: 1.8;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    letter-spacing: 1px;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+/* Curseur clignotant */
+.typewriter::after {
+    content: '|';
+    position: absolute;
+    right: 0;
+    color: #FF0000;
+    font-weight: bold;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Effet typewriter */
+.typewriter-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid transparent;
+    animation: typing 4s steps(60, end), blink 0.7s infinite;
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* Particules flottantes */
+.floating-particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #FF0000;
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatUp 4s ease-in infinite;
+    box-shadow: 0 0 15px #FF0000;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) translateX(50px);
+    }
+}
+
+/* Petits cœurs décor */
+.deco-hearts {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.small-heart {
+    position: absolute;
+    font-size: 24px;
+    color: #FF0000;
+    opacity: 0;
+    animation: heartFloat 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.6));
+}
+
+@keyframes heartFloat {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(0) rotateZ(0deg);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(-150px) rotateZ(20deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .big-heart {
+        font-size: 200px;
+    }
+    
+    .typewriter-container {
+        padding: 40px 30px;
+    }
+    
+    .typewriter {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Étoiles flottantes -->
+<div class="floating-particles" id="particlesContainer"></div>
+
+<!-- Petits cœurs décor -->
+<div class="deco-hearts" id="decorHearts"></div>
+
+<!-- Contenu principal -->
+<div class="container">
+    <!-- Grand cœur rouge -->
+    <div class="big-heart">❤</div>
+    
+    <!-- Texte avec effet typewriter -->
+    <div class="typewriter-container">
+        <div class="typewriter">
+            <div class="typewriter-text" id="typewriterText">Je t'aime de tout mon cœur</div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Créer les particules flottantes
+function createParticles() {
+    const container = document.getElementById('particlesContainer');
+    setInterval(() => {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = (Math.random() * 50 + 50) + '%';
+        particle.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        particle.style.animationDelay = Math.random() * 1 + 's';
+        container.appendChild(particle);
+        
+        setTimeout(() => particle.remove(), 5000);
+    }, 300);
+}
+
+// Créer les petits cœurs décor
+function createDecorHearts() {
+    const container = document.getElementById('decorHearts');
+    const positions = [
+        { left: '10%', top: '20%', delay: 0 },
+        { left: '85%', top: '15%', delay: 1 },
+        { left: '15%', top: '80%', delay: 2 },
+        { left: '80%', top: '75%', delay: 1.5 },
+        { left: '50%', top: '10%', delay: 0.5 },
+    ];
+    
+    positions.forEach(pos => {
+        const heart = document.createElement('div');
+        heart.className = 'small-heart';
+        heart.textContent = '❤';
+        heart.style.left = pos.left;
+        heart.style.top = pos.top;
+        heart.style.animationDelay = pos.delay + 's';
+        container.appendChild(heart);
+    });
+}
+
+// Initialiser
+createParticles();
+createDecorHearts();
+</script>
+
+</body>
+</html>
 
 * {
     margin: 0;

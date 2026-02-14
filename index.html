@@ -26,9 +26,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 40px 20px 80px; /* add bottom padding to avoid cutoff */
     position: relative;
-    overflow: hidden;
+    overflow: auto; /* allow scrolling so bottom content is visible */
 }
 
 /* Fond subtil avec texture */
@@ -85,7 +85,7 @@ body::before {
     max-width: 700px;
     width: 100%;
     text-align: center;
-    animation: none;
+    animation: fadeIn 2s ease-out;
 }
 
 @keyframes fadeIn {
@@ -106,7 +106,8 @@ body::before {
     background: linear-gradient(90deg, transparent, var(--or-doux), transparent);
     margin: 0 auto 40px;
     position: relative;
-    opacity: 1;
+    opacity: 0;
+    animation: ornamentAppear 1.5s ease-out 0.5s forwards;
 }
 
 .ornament-top::before,
@@ -146,7 +147,8 @@ body::before {
     margin-bottom: 30px;
     letter-spacing: 2px;
     font-weight: 400;
-    opacity: 1;
+    opacity: 0;
+    animation: titleAppear 1.8s ease-out 0.8s forwards;
 }
 
 @keyframes titleAppear {
@@ -164,9 +166,8 @@ body::before {
 .heart-elegant {
     font-size: 50px;
     margin: 40px 0;
-    opacity: 1;
-    /* keep subtle pulse, but ensure visible */
-    animation: heartPulse 4s ease-in-out 0s infinite;
+    opacity: 0;
+    animation: heartAppear 2s ease-out 1.2s forwards, heartPulse 4s ease-in-out 3s infinite;
     filter: drop-shadow(0 4px 8px rgba(212, 80, 106, 0.2));
 }
 
@@ -199,7 +200,8 @@ body::before {
     font-weight: 300;
     max-width: 600px;
     margin: 0 auto 30px;
-    opacity: 1;
+    opacity: 0;
+    animation: messageAppear 1.8s ease-out 1.5s forwards;
 }
 
 @keyframes messageAppear {
@@ -221,7 +223,8 @@ body::before {
     margin: 50px 0;
     position: relative;
     padding: 0 40px;
-    opacity: 1;
+    opacity: 0;
+    animation: quoteAppear 1.8s ease-out 1.8s forwards;
 }
 
 .quote::before,
@@ -262,7 +265,8 @@ body::before {
     color: var(--or-doux);
     margin-top: 60px;
     letter-spacing: 1px;
-    opacity: 1;
+    opacity: 0;
+    animation: signatureAppear 1.8s ease-out 2.2s forwards;
 }
 
 @keyframes signatureAppear {
@@ -283,7 +287,8 @@ body::before {
     background: linear-gradient(90deg, transparent, var(--or-doux), transparent);
     margin: 50px auto 0;
     position: relative;
-    opacity: 1;
+    opacity: 0;
+    animation: ornamentAppear 1.5s ease-out 2.5s forwards;
 }
 
 .ornament-bottom::before {
@@ -364,7 +369,8 @@ body::before {
     text-transform: uppercase;
     margin-bottom: 20px;
     font-weight: 300;
-    opacity: 1;
+    opacity: 0;
+    animation: dateAppear 1.5s ease-out 0.3s forwards;
 }
 
 @keyframes dateAppear {
